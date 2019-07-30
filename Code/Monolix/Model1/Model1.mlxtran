@@ -1,0 +1,154 @@
+<DATAFILE>
+
+[FILEINFO]
+file = '../../../Intermediate/Data_whole_tidy_filt.csv'
+delimiter = comma
+header = {t, Cell_index, Mean, Area, Cell, Suc2, Experiment, ID}
+
+[CONTENT]
+t = {use=time}
+Suc2 = {use=observation, name=Suc2, type=continuous}
+ID = {use=identifier}
+
+<MODEL>
+
+[INDIVIDUAL]
+input = {Glc0_pop, omega_Glc0, Suc20_pop, omega_Suc20, k1_pop, omega_k1, k10_pop, omega_k10, k2_pop, omega_k2, k3_pop, omega_k3, k4_pop, omega_k4, k5_pop, omega_k5, k6_pop, omega_k6, k7_pop, omega_k7, k8_pop, omega_k8, k9_pop, omega_k9, corr_k2_k1, corr_k3_k1, corr_k3_k2, corr_k4_k1, corr_k4_k2, corr_k4_k3, corr_k5_k1, corr_k5_k2, corr_k5_k3, corr_k5_k4, corr_k6_k1, corr_k6_k2, corr_k6_k3, corr_k6_k4, corr_k6_k5, corr_k7_k1, corr_k7_k2, corr_k7_k3, corr_k7_k4, corr_k7_k5, corr_k7_k6, corr_k8_k1, corr_k8_k2, corr_k8_k3, corr_k8_k4, corr_k8_k5, corr_k8_k6, corr_k8_k7, corr_k9_k1, corr_k9_k2, corr_k9_k3, corr_k9_k4, corr_k9_k5, corr_k9_k6, corr_k9_k7, corr_k9_k8, corr_k10_k1, corr_k2_k10, corr_k3_k10, corr_k4_k10, corr_k5_k10, corr_k6_k10, corr_k7_k10, corr_k8_k10, corr_k9_k10, corr_k1_Suc20, corr_k10_Suc20, corr_k2_Suc20, corr_k3_Suc20, corr_k4_Suc20, corr_k5_Suc20, corr_k6_Suc20, corr_k7_Suc20, corr_k8_Suc20, corr_k9_Suc20, corr_Suc20_Glc0, corr_k1_Glc0, corr_k10_Glc0, corr_k2_Glc0, corr_k3_Glc0, corr_k4_Glc0, corr_k5_Glc0, corr_k6_Glc0, corr_k7_Glc0, corr_k8_Glc0, corr_k9_Glc0}
+
+DEFINITION:
+Glc0 = {distribution=logNormal, typical=Glc0_pop, sd=omega_Glc0}
+Suc20 = {distribution=logNormal, typical=Suc20_pop, sd=omega_Suc20}
+k1 = {distribution=logNormal, typical=k1_pop, sd=omega_k1}
+k10 = {distribution=logNormal, typical=k10_pop, sd=omega_k10}
+k2 = {distribution=logNormal, typical=k2_pop, sd=omega_k2}
+k3 = {distribution=logNormal, typical=k3_pop, sd=omega_k3}
+k4 = {distribution=logNormal, typical=k4_pop, sd=omega_k4}
+k5 = {distribution=logNormal, typical=k5_pop, sd=omega_k5}
+k6 = {distribution=logNormal, typical=k6_pop, sd=omega_k6}
+k7 = {distribution=logNormal, typical=k7_pop, sd=omega_k7}
+k8 = {distribution=logNormal, typical=k8_pop, sd=omega_k8}
+k9 = {distribution=logNormal, typical=k9_pop, sd=omega_k9}
+correlation = {level=id, r(Suc20, Glc0)=corr_Suc20_Glc0, r(k10, Glc0)=corr_k10_Glc0, r(k10, Suc20)=corr_k10_Suc20, r(k10, k1)=corr_k10_k1, r(k1, Glc0)=corr_k1_Glc0, r(k1, Suc20)=corr_k1_Suc20, r(k2, Glc0)=corr_k2_Glc0, r(k2, Suc20)=corr_k2_Suc20, r(k2, k1)=corr_k2_k1, r(k2, k10)=corr_k2_k10, r(k3, Glc0)=corr_k3_Glc0, r(k3, Suc20)=corr_k3_Suc20, r(k3, k1)=corr_k3_k1, r(k3, k10)=corr_k3_k10, r(k3, k2)=corr_k3_k2, r(k4, Glc0)=corr_k4_Glc0, r(k4, Suc20)=corr_k4_Suc20, r(k4, k1)=corr_k4_k1, r(k4, k10)=corr_k4_k10, r(k4, k2)=corr_k4_k2, r(k4, k3)=corr_k4_k3, r(k5, Glc0)=corr_k5_Glc0, r(k5, Suc20)=corr_k5_Suc20, r(k5, k1)=corr_k5_k1, r(k5, k10)=corr_k5_k10, r(k5, k2)=corr_k5_k2, r(k5, k3)=corr_k5_k3, r(k5, k4)=corr_k5_k4, r(k6, Glc0)=corr_k6_Glc0, r(k6, Suc20)=corr_k6_Suc20, r(k6, k1)=corr_k6_k1, r(k6, k10)=corr_k6_k10, r(k6, k2)=corr_k6_k2, r(k6, k3)=corr_k6_k3, r(k6, k4)=corr_k6_k4, r(k6, k5)=corr_k6_k5, r(k7, Glc0)=corr_k7_Glc0, r(k7, Suc20)=corr_k7_Suc20, r(k7, k1)=corr_k7_k1, r(k7, k10)=corr_k7_k10, r(k7, k2)=corr_k7_k2, r(k7, k3)=corr_k7_k3, r(k7, k4)=corr_k7_k4, r(k7, k5)=corr_k7_k5, r(k7, k6)=corr_k7_k6, r(k8, Glc0)=corr_k8_Glc0, r(k8, Suc20)=corr_k8_Suc20, r(k8, k1)=corr_k8_k1, r(k8, k10)=corr_k8_k10, r(k8, k2)=corr_k8_k2, r(k8, k3)=corr_k8_k3, r(k8, k4)=corr_k8_k4, r(k8, k5)=corr_k8_k5, r(k8, k6)=corr_k8_k6, r(k8, k7)=corr_k8_k7, r(k9, Glc0)=corr_k9_Glc0, r(k9, Suc20)=corr_k9_Suc20, r(k9, k1)=corr_k9_k1, r(k9, k10)=corr_k9_k10, r(k9, k2)=corr_k9_k2, r(k9, k3)=corr_k9_k3, r(k9, k4)=corr_k9_k4, r(k9, k5)=corr_k9_k5, r(k9, k6)=corr_k9_k6, r(k9, k7)=corr_k9_k7, r(k9, k8)=corr_k9_k8}
+
+[LONGITUDINAL]
+input = {a}
+
+file = 'Model1.txt'
+
+DEFINITION:
+Suc2_ = {distribution=normal, prediction=Intensity, errorModel=constant(a)}
+
+<FIT>
+data = Suc2
+model = Suc2_
+
+<PARAMETER>
+Glc0_pop = {value=1.6, method=MLE}
+Suc20_pop = {value=4, method=MLE}
+a = {value=1, method=MLE}
+corr_Suc20_Glc0 = {value=0, method=MLE}
+corr_k10_Glc0 = {value=0, method=MLE}
+corr_k10_Suc20 = {value=0, method=MLE}
+corr_k10_k1 = {value=0, method=MLE}
+corr_k1_Glc0 = {value=0, method=MLE}
+corr_k1_Suc20 = {value=0, method=MLE}
+corr_k2_Glc0 = {value=0, method=MLE}
+corr_k2_Suc20 = {value=0, method=MLE}
+corr_k2_k1 = {value=0, method=MLE}
+corr_k2_k10 = {value=0, method=MLE}
+corr_k3_Glc0 = {value=0, method=MLE}
+corr_k3_Suc20 = {value=0, method=MLE}
+corr_k3_k1 = {value=0, method=MLE}
+corr_k3_k10 = {value=0, method=MLE}
+corr_k3_k2 = {value=0, method=MLE}
+corr_k4_Glc0 = {value=0, method=MLE}
+corr_k4_Suc20 = {value=0, method=MLE}
+corr_k4_k1 = {value=0, method=MLE}
+corr_k4_k10 = {value=0, method=MLE}
+corr_k4_k2 = {value=0, method=MLE}
+corr_k4_k3 = {value=0, method=MLE}
+corr_k5_Glc0 = {value=0, method=MLE}
+corr_k5_Suc20 = {value=0, method=MLE}
+corr_k5_k1 = {value=0, method=MLE}
+corr_k5_k10 = {value=0, method=MLE}
+corr_k5_k2 = {value=0, method=MLE}
+corr_k5_k3 = {value=0, method=MLE}
+corr_k5_k4 = {value=0, method=MLE}
+corr_k6_Glc0 = {value=0, method=MLE}
+corr_k6_Suc20 = {value=0, method=MLE}
+corr_k6_k1 = {value=0, method=MLE}
+corr_k6_k10 = {value=0, method=MLE}
+corr_k6_k2 = {value=0, method=MLE}
+corr_k6_k3 = {value=0, method=MLE}
+corr_k6_k4 = {value=0, method=MLE}
+corr_k6_k5 = {value=0, method=MLE}
+corr_k7_Glc0 = {value=0, method=MLE}
+corr_k7_Suc20 = {value=0, method=MLE}
+corr_k7_k1 = {value=0, method=MLE}
+corr_k7_k10 = {value=0, method=MLE}
+corr_k7_k2 = {value=0, method=MLE}
+corr_k7_k3 = {value=0, method=MLE}
+corr_k7_k4 = {value=0, method=MLE}
+corr_k7_k5 = {value=0, method=MLE}
+corr_k7_k6 = {value=0, method=MLE}
+corr_k8_Glc0 = {value=0, method=MLE}
+corr_k8_Suc20 = {value=0, method=MLE}
+corr_k8_k1 = {value=0, method=MLE}
+corr_k8_k10 = {value=0, method=MLE}
+corr_k8_k2 = {value=0, method=MLE}
+corr_k8_k3 = {value=0, method=MLE}
+corr_k8_k4 = {value=0, method=MLE}
+corr_k8_k5 = {value=0, method=MLE}
+corr_k8_k6 = {value=0, method=MLE}
+corr_k8_k7 = {value=0, method=MLE}
+corr_k9_Glc0 = {value=0, method=MLE}
+corr_k9_Suc20 = {value=0, method=MLE}
+corr_k9_k1 = {value=0, method=MLE}
+corr_k9_k10 = {value=0, method=MLE}
+corr_k9_k2 = {value=0, method=MLE}
+corr_k9_k3 = {value=0, method=MLE}
+corr_k9_k4 = {value=0, method=MLE}
+corr_k9_k5 = {value=0, method=MLE}
+corr_k9_k6 = {value=0, method=MLE}
+corr_k9_k7 = {value=0, method=MLE}
+corr_k9_k8 = {value=0, method=MLE}
+k10_pop = {value=206, method=MLE}
+k1_pop = {value=143.6, method=MLE}
+k2_pop = {value=37.8, method=MLE}
+k3_pop = {value=66, method=MLE}
+k4_pop = {value=30, method=MLE}
+k5_pop = {value=7.1, method=MLE}
+k6_pop = {value=21.3, method=MLE}
+k7_pop = {value=3.4, method=MLE}
+k8_pop = {value=173.2, method=MLE}
+k9_pop = {value=10, method=MLE}
+omega_Glc0 = {value=1, method=MLE}
+omega_Suc20 = {value=1, method=MLE}
+omega_k1 = {value=1, method=MLE}
+omega_k10 = {value=1, method=MLE}
+omega_k2 = {value=1, method=MLE}
+omega_k3 = {value=1, method=MLE}
+omega_k4 = {value=1, method=MLE}
+omega_k5 = {value=1, method=MLE}
+omega_k6 = {value=1, method=MLE}
+omega_k7 = {value=1, method=MLE}
+omega_k8 = {value=1, method=MLE}
+omega_k9 = {value=1, method=MLE}
+
+<MONOLIX>
+
+[TASKS]
+populationParameters()
+individualParameters(method = {conditionalMean, conditionalMode })
+fim(run = false,method = StochasticApproximation)
+logLikelihood(run = false,method = ImportanceSampling)
+plotResult(method = {outputplot, indfits, obspred, parameterdistribution, covariatemodeldiagnosis, randomeffects, covariancemodeldiagnosis, residualsscatter, residualsdistribution, saemresults })
+
+[SETTINGS]
+GLOBAL:
+exportpath = 'Model1'
+
+POPULATION:
+exploratoryiterations = 2000
+simulatedannealingiterations = 2000
+
