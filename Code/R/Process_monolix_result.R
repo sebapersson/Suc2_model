@@ -416,7 +416,7 @@ plot_individual_fit <- function(path_fig, path_to_result, which_cell, save_fig =
   p1 <- ggplot(data_fit_cell, aes(time, indivPredMode)) + 
     geom_line(size = 1.1, color = cbPalette[3]) + 
     geom_point(data = data_obs_cell, aes(time, Suc2_), color = cbPalette[2], size = 1.6) + 
-    labs(x = "Time", y = "Suc2 intensity") + 
+    labs(x = TeX("Scaled time"), y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]")) + 
     my_classic_theme
   
   # Save fig if required 

@@ -361,7 +361,7 @@ p_line_whole <- ggplot(whole_data_filt_tidy, aes(t, Suc2)) +
   geom_line(aes(group = ID), color = cbPalette[1], size = 0.3) + 
   geom_line(data = mean_median, aes(t, mean, color = "Mean"), size = 1.5) + 
   geom_line(data = mean_median, aes(t, median, color = "Median"), size = 1.5) + 
-  labs(x = "Scaled time", y = "Suc2 intensity") +
+  labs(x = TeX("Scaled time"), y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]")) +
   scale_color_manual(name = "Measure", values = cols) + 
   my_classic_theme
 
