@@ -11,7 +11,6 @@ clear data
 fixed_effects = parameter_val(1:10);
 Suc20 = parameter_val(11);
 Glc0 = parameter_val(12);
-omega_values = parameter_val(13:24);
 sigma_val = parameter_val(91);
 
 % Read the covariance matrix 
@@ -25,7 +24,7 @@ cd ..
 
 % Run the simulations 
 n_individuals = 125;
-simulated_result = calc_VC_quantiles(cov_mat, ode_fun, 100, ... 
+simulated_result = calc_VC_quantiles(cov_mat, ode_fun, 1000, ... 
     fixed_effects, Suc20, Glc0, sigma_val, n_individuals);
 
 % Save the resulting csv-file 
@@ -45,8 +44,7 @@ clear data
 fixed_effects = parameter_val(1:10);
 Suc20 = parameter_val(11);
 Glc0 = parameter_val(12);
-omega_values = parameter_val(13:24);
-sigma_val = parameter_val(61);
+sigma_val = parameter_val(70);
 
 % Read the covariance matrix 
 cov_mat = csvread(...
@@ -59,9 +57,9 @@ cd ..
 
 % Run the simulations 
 n_individuals = 125;
-simulated_result = calc_VC_quantiles(cov_mat, ode_fun, 100, ... 
+simulated_result2 = calc_VC_quantiles(cov_mat, ode_fun, 1000, ... 
     fixed_effects, Suc20, Glc0, sigma_val, n_individuals);
 
 % Save the resulting csv-file 
 csvwrite("../../Intermediate/VPC_model2.csv", ...
-    simulated_result);
+    simulated_result2);

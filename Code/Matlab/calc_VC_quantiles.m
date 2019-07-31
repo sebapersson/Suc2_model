@@ -23,7 +23,7 @@ function simulated_result = calc_VC_quantiles(cov_mat, ode_fun, ...
 mean_vec = zeros(1, 12);
 
 % Get time values
-time_stamps1 = 0:5:480 / 480;
+time_stamps1 = (0:5:480) / 480;
 
 % Set number of simulated data sets 
 n_obs = length(time_stamps1);
@@ -56,7 +56,7 @@ for k = 1:1:times_simulate
 
     % Where the result will be stored 
     result_mat = zeros(n_individuals * length(time_stamps1), 3);
-    result_mat(:, 1) = repmat(time_stamps1, n_individuals, 1);
+    result_mat(:, 1) = repmat(time_stamps1', n_individuals, 1);
     result_mat(:, 3) = repelem(1:1:n_individuals, length(time_stamps1));
 
     % Solve the system of ODE:s
