@@ -23,11 +23,11 @@ ode_fun = @Model1;
 cd ..
 
 % Set parameters for cells to simulate 
-n_cells_simulate = 10;
+n_cells_simulate = 50000;
 n_states = 4;
 n_parameters = 12;
 time_int = [0, 1];
-n_point_simulate = 50000;
+n_point_simulate = 100;
 
 % Run the simulations, this model uses the same structure as model 7
 simulated_data = simulate_single_cells_nlme(n_cells_simulate, n_states, ...
@@ -62,11 +62,11 @@ ode_fun = @Model2;
 cd ..
 
 % Set parameters for cells to simulate 
-n_cells_simulate = 10;
+n_cells_simulate = 50000;
 n_states = 4;
 n_parameters = 12;
 time_int = [0, 1];
-n_point_simulate = 50000;
+n_point_simulate = 100;
 
 % Run the simulations, this model uses the same structure as model 7
 simulated_data = simulate_single_cells_nlme(n_cells_simulate, n_states, ...

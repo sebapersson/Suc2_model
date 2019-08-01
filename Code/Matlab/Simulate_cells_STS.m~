@@ -5,7 +5,7 @@
 % Read the matrix used to generate random effects
 param_data = csvread(...
     "../../Result/Files/STS_model1_cov_mean.csv", 1);
-cov_mat = param_data(1:end-1, :);
+cov_mat = diag(diag(param_data(1:end-1, :)));
 mean_vec = param_data(end, :);
 % Choose the correct model 
 cd Models
@@ -25,14 +25,14 @@ simulated_data = simulate_single_cells_STS(n_cells_simulate, ...
 csvwrite("../../Intermediate/Simulation_model1_STS.csv", ...
     simulated_data);
 
-% ---------------------------------------------------------------------
+%% ---------------------------------------------------------------------
 % Model 2 STS
 % ---------------------------------------------------------------------
 
 % Read the matrix used to generate random effects
 param_data = csvread(...
     "../../Result/Files/STS_model2_cov_mean.csv", 1);
-cov_mat = param_data(1:end-1, :);
+cov_mat = diag(diag(param_data(1:end-1, :)));
 mean_vec = param_data(end, :);
 % Choose the correct model 
 cd Models
