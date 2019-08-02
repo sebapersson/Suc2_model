@@ -1,0 +1,323 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10713,        315]
+NotebookOptionsPosition[      9783,        292]
+NotebookOutlinePosition[     10120,        307]
+CellTagsIndexPosition[     10077,        304]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Needs", "[", "\"\<IdentifiabilityAnalysis`\>\"", "]"}], 
+  ";"}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"83ae65a0-d2b3-4750-803a-128bcfd68976"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"model1", " ", "=", " ", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SubscriptBox["x", "1"], "'"}], "[", "t", "]"}], "==", 
+       RowBox[{
+        SubscriptBox["\[Theta]", "1"], "-", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "2"], 
+         RowBox[{
+          SubscriptBox["x", "1"], "[", "t", "]"}]}], "+", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "3"], 
+         RowBox[{
+          SubscriptBox["x", "4"], "[", "t", "]"}]}]}]}], ",", " ", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["x", "1"], "[", "0", "]"}], "\[Equal]", 
+       SubscriptBox["\[Theta]", "12"]}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SubscriptBox["x", "2"], "'"}], "[", "t", "]"}], "\[Equal]", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[Theta]", "4"], 
+         RowBox[{"(", 
+          RowBox[{
+           SubscriptBox["\[Theta]", "12"], "-", 
+           RowBox[{
+            SubscriptBox["x", "1"], "[", "t", "]"}]}], ")"}]}], "-", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "5"], 
+         RowBox[{
+          SubscriptBox["x", "2"], "[", "t", "]"}]}]}]}], ",", " ", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["x", "2"], "[", "0", "]"}], "\[Equal]", "1"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SubscriptBox["x", "3"], "'"}], "[", "t", "]"}], "\[Equal]", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[Theta]", "6"], 
+         RowBox[{
+          RowBox[{
+           SubscriptBox["x", "2"], "[", "t", "]"}], "^", "2"}]}], "-", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "7"], 
+         RowBox[{
+          SubscriptBox["x", "3"], "[", "t", "]"}]}]}]}], ",", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["x", "3"], "[", "0", "]"}], "\[Equal]", 
+       SubscriptBox["\[Theta]", "11"]}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SubscriptBox["x", "4"], "'"}], "[", "t", "]"}], "\[Equal]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            SubscriptBox["\[Theta]", "10"], 
+            RowBox[{
+             SubscriptBox["x", "2"], "[", "t", "]"}]}], "+", 
+           RowBox[{
+            SubscriptBox["\[Theta]", "7"], 
+            RowBox[{
+             RowBox[{
+              SubscriptBox["x", "3"], "[", "t", "]"}], "^", "2"}]}]}], ")"}], 
+         "/", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             SubscriptBox["x", "1"], "[", "t", "]"}], 
+            RowBox[{
+             SubscriptBox["x", "2"], "[", "t", "]"}]}], "+", 
+           SubscriptBox["\[Theta]", "8"]}], ")"}]}], "-", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "9"], 
+         RowBox[{
+          SubscriptBox["x", "4"], "[", "t", "]"}]}]}]}], ",", " ", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["x", "4"], "[", "0", "]"}], "\[Equal]", "0"}]}], 
+     "\[IndentingNewLine]", "}"}]}], ";"}], " "}]], "Input",
+ CellChangeTimes->{{3.77372680433729*^9, 3.77372683766315*^9}, {
+  3.773726901892048*^9, 3.773726940268124*^9}, {3.773726997476416*^9, 
+  3.7737270270091143`*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"03a7b473-0c85-40b0-b830-b0e25442e055"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"iad", " ", "=", " ", 
+  RowBox[{"IdentifiabilityAnalysis", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"model1", ",", " ", 
+      RowBox[{
+       SubscriptBox["x", "3"], "[", "t", "]"}]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      SubscriptBox["x", "1"], ",", " ", 
+      SubscriptBox["x", "2"], ",", " ", 
+      SubscriptBox["x", "3"], ",", " ", 
+      SubscriptBox["x", "4"]}], "}"}], ",", " ", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      SubscriptBox["\[Theta]", "i"], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", " ", "12"}], "}"}]}], "]"}], ",", " ", "t", ",", " ", 
+    RowBox[{"OptimizationLevel", "\[Rule]", "0"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.773727030501142*^9, 3.7737270321868668`*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"2b34de13-6284-4a09-95c5-fe5bcc5ce26c"],
+
+Cell[BoxData["\<\"IdentifiabilityAnalysisData[True, <>]\"\>"], "Output",
+ CellChangeTimes->{3.773726960368935*^9, 3.773727004236451*^9, 
+  3.7737270389720984`*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"a4682485-4639-41e0-a004-6f2133814d03"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"model2", " ", "=", " ", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SubscriptBox["x", "1"], "'"}], "[", "t", "]"}], "==", 
+       RowBox[{
+        SubscriptBox["\[Theta]", "1"], "-", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "2"], 
+         RowBox[{
+          SubscriptBox["x", "1"], "[", "t", "]"}]}], "+", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "3"], 
+         RowBox[{
+          SubscriptBox["x", "4"], "[", "t", "]"}]}]}]}], ",", " ", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["x", "1"], "[", "0", "]"}], "\[Equal]", 
+       SubscriptBox["\[Theta]", "12"]}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SubscriptBox["x", "2"], "'"}], "[", "t", "]"}], "\[Equal]", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[Theta]", "4"], "/", 
+         RowBox[{"(", 
+          RowBox[{
+           SubscriptBox["\[Theta]", "8"], "+", 
+           RowBox[{
+            RowBox[{
+             SubscriptBox["x", "1"], "[", "t", "]"}], "^", "2"}]}], ")"}]}], 
+        "-", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "5"], 
+         RowBox[{
+          SubscriptBox["x", "2"], "[", "t", "]"}]}]}]}], ",", " ", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["x", "2"], "[", "0", "]"}], "\[Equal]", "1"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SubscriptBox["x", "3"], "'"}], "[", "t", "]"}], "\[Equal]", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[Theta]", "6"], 
+         RowBox[{
+          RowBox[{
+           SubscriptBox["x", "2"], "[", "t", "]"}], "^", "2"}]}], "-", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "7"], 
+         RowBox[{
+          RowBox[{
+           SubscriptBox["x", "3"], "[", "t", "]"}], "^", "2"}]}]}]}], ",", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["x", "3"], "[", "0", "]"}], "\[Equal]", 
+       SubscriptBox["\[Theta]", "11"]}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SubscriptBox["x", "4"], "'"}], "[", "t", "]"}], "\[Equal]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            SubscriptBox["\[Theta]", "10"], 
+            RowBox[{
+             SubscriptBox["x", "2"], "[", "t", "]"}]}], "+", 
+           RowBox[{
+            SubscriptBox["\[Theta]", "7"], 
+            RowBox[{
+             RowBox[{
+              SubscriptBox["x", "3"], "[", "t", "]"}], "^", "2"}]}]}], ")"}], 
+         "/", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             SubscriptBox["x", "1"], "[", "t", "]"}], 
+            RowBox[{
+             SubscriptBox["x", "3"], "[", "t", "]"}]}], "+", 
+           SubscriptBox["\[Theta]", "8"]}], ")"}]}], "-", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "9"], 
+         RowBox[{
+          SubscriptBox["x", "4"], "[", "t", "]"}]}]}]}], ",", " ", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["x", "4"], "[", "0", "]"}], "\[Equal]", "0"}]}], 
+     "\[IndentingNewLine]", "}"}]}], ";"}], " "}]], "Input",
+ CellChangeTimes->{{3.7737269786371183`*^9, 3.7737270077709312`*^9}, {
+  3.77372707754773*^9, 3.773727141033848*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"0145ad65-5a90-47ad-8316-167d20f14993"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"iad", " ", "=", " ", 
+  RowBox[{"IdentifiabilityAnalysis", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"model2", ",", " ", 
+      RowBox[{
+       SubscriptBox["x", "3"], "[", "t", "]"}]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      SubscriptBox["x", "1"], ",", " ", 
+      SubscriptBox["x", "2"], ",", " ", 
+      SubscriptBox["x", "3"], ",", " ", 
+      SubscriptBox["x", "4"]}], "}"}], ",", " ", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      SubscriptBox["\[Theta]", "i"], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", " ", "12"}], "}"}]}], "]"}], ",", " ", "t", ",", " ", 
+    RowBox[{"OptimizationLevel", "\[Rule]", "0"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.773727009139222*^9, 3.7737270120835447`*^9}, {
+  3.773727152194768*^9, 3.7737271552453957`*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"1d55ebae-8271-4ad9-aead-64486fbf7453"],
+
+Cell[BoxData["\<\"IdentifiabilityAnalysisData[True, <>]\"\>"], "Output",
+ CellChangeTimes->{3.773727158248608*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"27cec57a-e8af-4e9d-ba18-edde6cc42b11"]
+}, Open  ]]
+},
+WindowSize->{1920, 1048},
+WindowMargins->{{1920, Automatic}, {0, Automatic}},
+FrontEndVersion->"12.0 for Linux x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 188, 4, 31, "Input",ExpressionUUID->"83ae65a0-d2b3-4750-803a-128bcfd68976"],
+Cell[749, 26, 3367, 99, 147, "Input",ExpressionUUID->"03a7b473-0c85-40b0-b830-b0e25442e055"],
+Cell[CellGroupData[{
+Cell[4141, 129, 847, 21, 31, "Input",ExpressionUUID->"2b34de13-6284-4a09-95c5-fe5bcc5ce26c"],
+Cell[4991, 152, 241, 3, 35, "Output",ExpressionUUID->"a4682485-4639-41e0-a004-6f2133814d03"]
+}, Open  ]],
+Cell[5247, 158, 3400, 101, 147, "Input",ExpressionUUID->"0145ad65-5a90-47ad-8316-167d20f14993"],
+Cell[CellGroupData[{
+Cell[8672, 263, 899, 22, 31, InheritFromParent,ExpressionUUID->"1d55ebae-8271-4ad9-aead-64486fbf7453"],
+Cell[9574, 287, 193, 2, 68, "Output",ExpressionUUID->"27cec57a-e8af-4e9d-ba18-edde6cc42b11"]
+}, Open  ]]
+}
+]
+*)
+
