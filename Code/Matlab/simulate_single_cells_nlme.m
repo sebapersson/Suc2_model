@@ -1,6 +1,6 @@
 function simulation_result = simulate_single_cells_nlme(n_cells_simulate, ...
     n_states, n_parameters, time_int, fixed_effects, suc20, glc0, ...
-    cov_mat, ode_fun, n_point_simulate)
+    cov_mat, ode_fun, n_point_simulate, rate_in_factor)
 % Function that simulates the states a n_point_simulate time points for the
 % nlme models. Note that this function assumes a model with 12 parameters
 % on the form k1, k2, k3, k4, k5, k6, k7, k8, k9, k10, Suc20 and Glc0. 
@@ -15,9 +15,16 @@ function simulation_result = simulate_single_cells_nlme(n_cells_simulate, ...
 %   cov_mat, the covariance matrix for the parameters
 %   ode_fun, the ode function to simulate cells from
 %   n_point_simulate, number of time points to simulate 
+%   rate_in_factor, factor that decides the glucose change at time zero. It
+%   has a default value of 1/40
 % Returns:
 %   simulation_result, a matrix with columns time-points, x1, x2, x3, x4
 %   and index for which simulated cell it was. 
+
+% See if the rate in factor should have defualt value 
+if nargin == 10
+   rate_in_factor = 1 / 40; 
+end
 
 % Set number of simulated data sets
 time_stamps1 = linspace(time_int(1), time_int(2), n_point_simulate);
@@ -61,7 +68,8 @@ for i = 1:1:n_cells_simulate
     % Solve the ODE-system
     init_val = [glc_init_val(i), 1, suc2_init_val(i), 0];
     theta_vec = [param_values(:, i)', glc_init_val(i)];
-    [t, y] = ode45(@(t, y) ode_fun(t, y, theta_vec), time_int, init_val);
+    [t, y] = ode45(@(t, y) ode_fun(t, y, theta_vec, rate_in_factor), ...
+        time_int, init_val);
     
     % Interpolate the observed measurement points
     for j = 1:1:n_point_simulate
