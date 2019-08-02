@@ -1,4 +1,4 @@
-function dydt = Model1(t, y, theta)
+function dydt = Model1(t, y, theta, rate_in_factor)
 % Function that describes the ODE-system for the model 1. 
 % Args:
 %   t, the time 
@@ -9,9 +9,16 @@ function dydt = Model1(t, y, theta)
 %       y(4), X the cellular response to starvation 
 %   theta, paramater vector where theta(0) -- theta(10) corresponds to the
 %   rates k1, ..., k10. theta(11) corresponds to the inital glucose level.
+%   rate_in_factor, factor that decides the glucose change at time zero. It
+%   has a default value of 1/40
 % Returns:
 %   The deriviatives for the system at time t which is used by the
 %   ODE-solvers in Matlab. 
+
+% Check if a value for rate_in_factor has been provided 
+if nargin == 3
+    rate_in_factor = 1 / 40;
+end
 
 % Rename the parameters according to rates 
 k1 = theta(1);
@@ -30,7 +37,7 @@ Glc0 = theta(11);
 if t < 0.01
     rate_in = k1 * 1;
 else 
-    rate_in = k1 * 1 / 40;
+    rate_in = k1 * rate_in_factor;
 end 
 
 % The ode-functions 
