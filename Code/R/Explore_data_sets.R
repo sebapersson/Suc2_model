@@ -8,10 +8,11 @@ RNGkind("L'Ecuyer-CMRG")
 my_min_theme <- theme_minimal() + theme(plot.title = element_text(hjust = 0.5, size = 14, face="bold"), 
                                         plot.subtitle = element_text(hjust = 0.5)) +
   theme(axis.title=element_text(size=13))
-my_classic_theme <- theme_classic() + theme(plot.title = element_text(hjust = 0.5, size = 14, face="bold"), 
+my_classic_theme <- theme_bw() + theme(plot.title = element_text(hjust = 0.5, size = 14, face="bold"), 
                                             plot.subtitle = element_text(hjust = 0.5)) +
-  theme(axis.title=element_text(size=13)) + theme(panel.grid.major = element_line(size = 0.2, linetype = 'solid',
-                                                                                  colour = "grey"))
+  theme(axis.title=element_text(size=13)) 
+
+#theme(panel.grid.major = element_line(size = 0.2, linetype = 'solid',colour = "grey"))
 
 # For certain kinds of plots where one parameter increses 
 my_palette <- brewer.pal(n = 9, name = "GnBu")[-c(1, 2, 3)]
@@ -58,7 +59,7 @@ mean_median1 <- data1_mean %>%
             median = median(Mean))
 
 # Plot the data 
-pdf(file = "../../Result/Figures/Data_set/Suc2_data1_line_plot.pdf", height = 5, width = 9)
+pdf(file = "../../Result/Figures/Data_set/Suc2_data1_line_plot.pdf", height = 6, width = 9)
 cols = c("Mean" = cbPalette[4], "Median" = cbPalette[6])
 p1_line <- ggplot(data1_mean, aes(t, Mean)) + 
   geom_line(aes(group = Cell), size = 0.3, color = cbPalette[1]) + 
@@ -71,7 +72,7 @@ p1_line
 garbage <- dev.off()
 
 # Boxplot yields nice overview 
-pdf(file = "../../Result/Figures/Data_set/Suc2_data1_box_plot.pdf", height = 5, width = 9)
+pdf(file = "../../Result/Figures/Data_set/Suc2_data1_box_plot.pdf", height = 6, width = 9)
 p1_box <- ggplot(data1_mean, aes(t, Mean)) + 
   geom_boxplot(aes(group = t)) + 
   labs(x = "Time [min]", y = "Intensity") +
@@ -97,7 +98,7 @@ mean_median2 <- data2_mean %>%
             median = median(Mean))
 
 # Plot the data 
-pdf(file = "../../Result/Figures/Data_set/Suc2_data2_line_plot.pdf", height = 5, width = 9)
+pdf(file = "../../Result/Figures/Data_set/Suc2_data2_line_plot.pdf", height = 6, width = 9)
 cols = c("Mean" = cbPalette[4], "Median" = cbPalette[6])
 p2_line <- ggplot(data2_mean, aes(t, Mean)) + 
   geom_line(aes(group = Cell), size = 0.3, color = cbPalette[1]) + 
@@ -110,7 +111,7 @@ p2_line
 garbage <- dev.off()
 
 # Boxplot yields nice overview 
-pdf(file = "../../Result/Figures/Data_set/Suc2_data2_box_plot.pdf", height = 5, width = 9)
+pdf(file = "../../Result/Figures/Data_set/Suc2_data2_box_plot.pdf", height = 6, width = 9)
 p2_box <- ggplot(data2_mean, aes(t, Mean)) + 
   geom_boxplot(aes(group = t)) + 
   labs(x = "Time [min]", y = "Intensity") + 
@@ -133,7 +134,7 @@ data_extreme1 <- data1_mean %>%
          | Cell == "Mean6" | Cell == "Mean9" | Cell == "Mean30" | Cell == "Mean70" | Cell == "Mean31")
 
 # Write result to file 
-pdf(file = "../../Result/Figures/Data_set/Suc2_data1_line_plot_ext.pdf", height = 5, width = 9)
+pdf(file = "../../Result/Figures/Data_set/Suc2_data1_line_plot_ext.pdf", height = 6, width = 9)
 p1_ext <- ggplot(data1_mean, aes(t, Mean)) + 
   geom_line(aes(group = Cell), size = 0.3, color = cbPalette[1]) + 
   geom_line(data = data_extreme1, aes(t, Mean, color = Cell), size = 1.5) + 
@@ -160,7 +161,7 @@ data_extreme2 <- data2_mean %>%
   mutate(Cell = as.factor(as.character(Cell)))
 
 # Write result to file 
-pdf(file = "../../Result/Figures/Data_set/Suc2_data2_line_plot_ext.pdf", height = 5, width = 9)
+pdf(file = "../../Result/Figures/Data_set/Suc2_data2_line_plot_ext.pdf", height = 6, width = 9)
 p2_ext <- ggplot(data2_mean, aes(t, Mean)) + 
   geom_line(aes(group = Cell), size = 0.3, color = cbPalette[1]) + 
   geom_line(data = data_extreme2, aes(t, Mean, color = Cell), size = 1.5) + 
@@ -182,7 +183,7 @@ size_data1 <- suc2_data1 %>%
   mutate(Cell_index = 1:70) %>%
   arrange_at("Area", desc) 
 
-pdf(file = "../../Result/Figures/Data_set/Suc2_data1_size.pdf", height = 5, width = 9)
+pdf(file = "../../Result/Figures/Data_set/Suc2_data1_size.pdf", height = 6, width = 9)
 p1_size <- ggplot(size_data1, aes(Cell_index, Area)) + 
   geom_point() + 
   labs(x = "Cell index", y = "Cell area", title = "Data1 cell sizes") + 
@@ -201,7 +202,7 @@ size_data2 <- suc2_data2 %>%
   mutate(Cell_index = 1:130) %>%
   arrange_at("Area", desc) 
 
-pdf(file = "../../Result/Figures/Data_set/Suc2_data2_size.pdf", height = 5, width = 9)
+pdf(file = "../../Result/Figures/Data_set/Suc2_data2_size.pdf", height = 6, width = 9)
 p2_size <- ggplot(size_data2, aes(Cell_index, Area)) + 
   geom_point() + 
   scale_y_log10() +
@@ -219,7 +220,7 @@ data_extreme1 <- data1_mean %>%
          | Cell == "Mean6" | Cell == "Mean9" | Cell == "Mean30" | Cell == "Mean70" | Cell == "Mean31")
 
 # Write result to file 
-pdf(file = "../../Result/Figures/Data_set/Suc2_data1_line_plot_ext.pdf", height = 5, width = 9)
+pdf(file = "../../Result/Figures/Data_set/Suc2_data1_line_plot_ext.pdf", height = 6, width = 9)
 p1_ext <- ggplot(data1_mean, aes(t, Mean)) + 
   geom_line(aes(group = Cell), size = 0.3, color = cbPalette[1]) + 
   geom_line(data = data_extreme1, aes(t, Mean, color = Cell), size = 1.0) + 
@@ -239,7 +240,7 @@ data_extreme2 <- data2_mean %>%
   mutate(Cell = as.factor(as.character(Cell)))
 
 # Write result to file 
-pdf(file = "../../Result/Figures/Data_set/Suc2_data2_line_plot_ext.pdf", height = 5, width = 9)
+pdf(file = "../../Result/Figures/Data_set/Suc2_data2_line_plot_ext.pdf", height = 6, width = 9)
 p2_ext <- ggplot(data2_mean, aes(t, Mean)) + 
   geom_line(aes(group = Cell), size = 0.3, color = cbPalette[1]) + 
   geom_line(data = data_extreme2, aes(t, Mean, color = Cell), size = 1.0) + 
@@ -409,7 +410,7 @@ p_line_whole <- ggplot(whole_data_filt_tidy, aes(t, Suc2)) +
   my_classic_theme
 
 p_line_whole
-ggsave("../../Result/Figures/Data_set/Line_whole_data_set_line.pdf", width = 9, height = 5)
+ggsave("../../Result/Figures/Data_set/Line_whole_data_set_line.pdf", width = 9, height = 6)
 
 # Plot the different data sets 
 p_line_exp <- ggplot(whole_data_filt_tidy, aes(t, Suc2, color = Experiment)) + 
@@ -417,7 +418,7 @@ p_line_exp <- ggplot(whole_data_filt_tidy, aes(t, Suc2, color = Experiment)) +
   scale_color_manual(values = cbPalette[-1]) + 
   my_classic_theme
 p_line_exp
-ggsave("../../Result/Figures/Data_set/Line_whole_data_set_exp_col.pdf", width = 9, height = 5)
+ggsave("../../Result/Figures/Data_set/Line_whole_data_set_exp_col.pdf", width = 9, height = 6)
 
 # Box plot of both data sets
 p_both_box <- ggplot(whole_data_filt_tidy, aes(as.factor(t), Suc2, fill = Experiment)) + 
@@ -426,7 +427,7 @@ p_both_box <- ggplot(whole_data_filt_tidy, aes(as.factor(t), Suc2, fill = Experi
   my_classic_theme +
   theme(axis.text.x = element_blank())
 p_both_box
-ggsave("../../Result/Figures/Data_set/Box_whole_data_set_exp_col.pdf", width = 9, height = 5)
+ggsave("../../Result/Figures/Data_set/Box_whole_data_set_exp_col.pdf", width = 9, height = 6)
 
 # Write the whole tidy data set to file 
 if(!file.exists("../../Intermediate/Data_whole_tidy_filt.csv")){
