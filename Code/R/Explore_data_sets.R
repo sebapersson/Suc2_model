@@ -64,7 +64,7 @@ p1_line <- ggplot(data1_mean, aes(t, Mean)) +
   geom_line(aes(group = Cell), size = 0.3, color = cbPalette[1]) + 
   geom_line(data = mean_median1, aes(t, mean, color = "Mean"), size = 1.5) + 
   geom_line(data = mean_median1, aes(t, median, color = "Median"), size = 1.5) + 
-  labs(x = "Time [min]", y = "Intensity") +
+  labs(x = "Time [min]", y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]")) +
   scale_color_manual(name = "Measure", values = cols) + 
   my_min_theme
 p1_line
@@ -103,7 +103,7 @@ p2_line <- ggplot(data2_mean, aes(t, Mean)) +
   geom_line(aes(group = Cell), size = 0.3, color = cbPalette[1]) + 
   geom_line(data = mean_median2, aes(t, mean, color = "Mean"), size = 1.5) + 
   geom_line(data = mean_median2, aes(t, median, color = "Median"), size = 1.5) + 
-  labs(x = "Time [min]", y = "Intensity") +
+  labs(x = "Time [min]", y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]")) +
   scale_color_manual(name = "Measure", values = cols) + 
   my_min_theme
 p2_line
@@ -139,7 +139,7 @@ p1_ext <- ggplot(data1_mean, aes(t, Mean)) +
   geom_line(data = data_extreme1, aes(t, Mean, color = Cell), size = 1.5) + 
   geom_line(data = mean_median1, aes(t, mean), size = 1.5, linetype = "dashed") + 
   geom_line(data = mean_median1, aes(t, median), size = 1.5) + 
-  labs(x = "Time [min]", y = "Intensity", title = "Extreme observations data 1") +
+  labs(x = "Time [min]", y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"), title = "Extreme observations data 1") +
   scale_color_brewer(palette = "Paired") + 
   my_min_theme
 p1_ext
@@ -166,7 +166,7 @@ p2_ext <- ggplot(data2_mean, aes(t, Mean)) +
   geom_line(data = data_extreme2, aes(t, Mean, color = Cell), size = 1.5) + 
   geom_line(data = mean_median2, aes(t, mean), size = 1.5, linetype = "dashed") + 
   geom_line(data = mean_median2, aes(t, median), size = 1.5) + 
-  labs(x = "Time [min]", y = "Intensity", title = "Extreme observations data 2") +
+  labs(x = "Time [min]", y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"), title = "Extreme observations data 2") +
   scale_color_brewer(palette = "Paired") + 
   my_min_theme
 p2_ext
@@ -209,6 +209,49 @@ p2_size <- ggplot(size_data2, aes(Cell_index, Area)) +
   my_min_theme
 p2_size
 garbage <- dev.off()
+
+# -----------------------------------------------------------------------------------------------------------------
+# Plot some of the more extreme cells 
+# -----------------------------------------------------------------------------------------------------------------
+# Color the more extreme 
+data_extreme1 <- data1_mean %>% 
+  filter(Cell == "Mean3" | Cell == "Mean5" | Cell == "Mean29" | Cell == "Mean4" | Cell == "Mean39" | Cell == "Mean26"
+         | Cell == "Mean6" | Cell == "Mean9" | Cell == "Mean30" | Cell == "Mean70" | Cell == "Mean31")
+
+# Write result to file 
+pdf(file = "../../Result/Figures/Data_set/Suc2_data1_line_plot_ext.pdf", height = 5, width = 9)
+p1_ext <- ggplot(data1_mean, aes(t, Mean)) + 
+  geom_line(aes(group = Cell), size = 0.3, color = cbPalette[1]) + 
+  geom_line(data = data_extreme1, aes(t, Mean, color = Cell), size = 1.0) + 
+  geom_line(data = mean_median1, aes(t, mean), size = 1.1, linetype = "dashed") + 
+  geom_line(data = mean_median1, aes(t, median), size = 1.1) + 
+  labs(x = "Time [min]", y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]")) +
+  scale_color_brewer(palette = "Paired") + 
+  my_classic_theme + 
+  theme(legend.position = "none")
+p1_ext
+garbage <- dev.off()
+
+data_extreme2 <- data2_mean %>% 
+  filter(Cell == "Mean4" | Cell == "Mean15" | Cell == "Mean16" | Cell == "Mean17" | Cell == "Mean20" | Cell == "Mean25"
+         | Cell == "Mean45" | Cell == "Mean46" | Cell == "Mean47" | Cell == "Mean83" | Cell == "Mean88" 
+         | Cell == "Mean89") %>%
+  mutate(Cell = as.factor(as.character(Cell)))
+
+# Write result to file 
+pdf(file = "../../Result/Figures/Data_set/Suc2_data2_line_plot_ext.pdf", height = 5, width = 9)
+p2_ext <- ggplot(data2_mean, aes(t, Mean)) + 
+  geom_line(aes(group = Cell), size = 0.3, color = cbPalette[1]) + 
+  geom_line(data = data_extreme2, aes(t, Mean, color = Cell), size = 1.0) + 
+  geom_line(data = mean_median2, aes(t, mean), size = 1.1, linetype = "dashed") + 
+  geom_line(data = mean_median2, aes(t, median), size = 1.1) + 
+  labs(x = "Time [min]", y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]")) +
+  scale_color_brewer(palette = "Paired") + 
+  my_classic_theme + 
+  theme(legend.position = "none")
+p2_ext
+dev.off()
+
 
 # -----------------------------------------------------------------------------------------------------------------
 # Filter both data sets for the most extreme observations
@@ -289,7 +332,7 @@ data1_tidy_filtered <- data1_tidy %>%
   filter(Cell != 54) %>%
   filter(Cell != 59) 
 
-# Filter the second data set 
+  # Filter the second data set 
 data2_tidy_filtered <- data2_tidy %>%
   filter(Cell != 3) %>%
   filter(Cell != 4)%>%
