@@ -33,12 +33,12 @@ create_vpc_plots <- function(path_to_data, path_to_vpc_data)
   data_sum <- data %>%
     group_by(t) %>%
     summarise(median = median(Suc2), 
-              quant01 = quantile(Suc2, 0.05), 
+              quant01 = quantile(Suc2, 0.025), 
               quant02 = quantile(Suc2, 0.2), 
               quant03 = quantile(Suc2, 0.3), 
               quant07 = quantile(Suc2, 0.7), 
               quant08 = quantile(Suc2, 0.8),
-              quant09 = quantile(Suc2, 0.95))
+              quant09 = quantile(Suc2, 0.975))
   
   # Read the vpc-data 
   vpc_data <- read_csv(path_to_vpc_data, col_types = cols(), col_names = F) %>%
@@ -100,7 +100,7 @@ create_vpc_plots <- function(path_to_data, path_to_vpc_data)
                 fill = my_palette[3], alpha = 0.3, color = NA) + 
     geom_ribbon(data = vpc_data_sum, mapping = aes(x = t, ymin = low_quant_median, ymax = upp_quant_median), 
                 fill = my_palette[6], alpha = 0.3, color = NA) + 
-    labs(title = "0.05 and 0.95 quantiles", y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"), 
+    labs(title = "0.025 and 0.975 quantiles", y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"), 
          x = "Scaled time") + 
     my_classic_theme
   

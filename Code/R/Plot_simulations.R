@@ -130,13 +130,13 @@ path_to_data <- "../../Intermediate/Simulation_model1.csv"
 path_raw_data <- "../../Intermediate/Data_whole_tidy_filt.csv"
 plot_list <- plot_simulated_data(path_to_data, path_raw_data, state_names)
 plot_list[[1]]
-ggsave("../../Result/Model1_nlme/Simulation_nlme1_Glc.pdf")
+ggsave("../../Result/Figures/Model1_nlme/Simulation_nlme1_Glc.pdf")
 plot_list[[2]] + labs(title = "SNF1 pathway vs time", y = "SNF1 pathway")
-ggsave("../../Result/Model1_nlme/Simulation_nlme1_SNF1.pdf")
+ggsave("../../Result/Figures/Model1_nlme/Simulation_nlme1_SNF1.pdf")
 plot_list[[3]] + labs(y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"))
-ggsave("../../Result/Model1_nlme/Simulation_nlme1_Suc2.pdf")
+ggsave("../../Result/Figures/Model1_nlme/Simulation_nlme1_Suc2.pdf")
 plot_list[[4]]
-ggsave("../../Result/Model1_nlme/Simulation_nlme1_X.pdf")
+ggsave("../../Result/Figures/Model1_nlme/Simulation_nlme1_X.pdf")
 
 # Model2 nlme
 state_names <- c("Glc", "Mig1", "Suc2", "X", "t", "Cell")
@@ -144,13 +144,13 @@ path_to_data <- "../../Intermediate/Simulation_model2.csv"
 path_raw_data <- "../../Intermediate/Data_whole_tidy_filt.csv"
 plot_list <- plot_simulated_data(path_to_data, path_raw_data, state_names)
 plot_list[[1]]
-ggsave("../../Result/Model2_nlme/Simulation_nlme2_Glc.pdf")
+ggsave("../../Result/Figures/Model2_nlme/Simulation_nlme2_Glc.pdf")
 plot_list[[2]] + labs(title = "SNF1 pathway vs time", y = "SNF1 pathway")
-ggsave("../../Result/Model2_nlme/Simulation_nlme2_SNF1.pdf")
+ggsave("../../Result/Figures/Model2_nlme/Simulation_nlme2_SNF1.pdf")
 plot_list[[3]] + labs(y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"))
-ggsave("../../Result/Model2_nlme/Simulation_nlme2_Suc2.pdf")
+ggsave("../../Result/Figures/Model2_nlme/Simulation_nlme2_Suc2.pdf")
 plot_list[[4]]
-ggsave("../../Result/Model2_nlme/Simulation_nlme2_X.pdf")
+ggsave("../../Result/Figures/Model2_nlme/Simulation_nlme2_X.pdf")
 
 
 # Model1 STS 
@@ -159,13 +159,13 @@ path_to_data <- "../../Intermediate/Simulation_model1_STS.csv"
 path_raw_data <- "../../Intermediate/Data_whole_tidy_filt.csv"
 plot_list <- plot_simulated_data(path_to_data, path_raw_data, state_names)
 plot_list[[1]]
-ggsave("../../Result/Model1_STS/Simulation_STS1_Glc.pdf")
+ggsave("../../Result/Figures/Model1_STS/Simulation_STS1_Glc.pdf")
 plot_list[[2]] + labs(title = "SNF1 pathway vs time", y = "SNF1 pathway")
-ggsave("../../Result/Model1_STS/Simulation_STS1_SNF1.pdf")
+ggsave("../../Result/Figures/Model1_STS/Simulation_STS1_SNF1.pdf")
 plot_list[[3]] + labs(y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"))
-ggsave("../../Result/Model1_STS/Simulation_STS1_Suc2.pdf")
+ggsave("../../Result/Figures/Model1_STS/Simulation_STS1_Suc2.pdf")
 plot_list[[4]]
-ggsave("../../Result/Model1_STS/Simulation_STS1_X.pdf")
+ggsave("../../Result/Figures/Model1_STS/Simulation_STS1_X.pdf")
 
 # Model2 STS 
 state_names <- c("Glc", "Mig1", "Suc2", "X", "t", "Cell")
@@ -173,10 +173,10 @@ path_to_data <- "../../Intermediate/Simulation_model2_STS.csv"
 path_raw_data <- "../../Intermediate/Data_whole_tidy_filt.csv"
 plot_list <- plot_simulated_data(path_to_data, path_raw_data, state_names)
 plot_list[[1]]
-ggsave("../../Result/Model2_STS/Simulation_STS2_Glc.pdf")
+ggsave("../../Result/Figures/Model2_STS/Simulation_STS2_Glc.pdf")
 plot_list[[2]] + labs(title = "SNF1 pathway vs time", y = "SNF1 pathway")
-ggsave("../../Result/Model2_STS/Simulation_STS2_SNF1.pdf")
+ggsave("../../Result/Figures/Model2_STS/Simulation_STS2_SNF1.pdf")
 plot_list[[3]] + labs(y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"))
-ggsave("../../Result/Model2_STS/Simulation_STS2_Suc2.pdf")
+ggsave("../../Result/Figures/Model2_STS/Simulation_STS2_Suc2.pdf")
 plot_list[[4]]
-ggsave("../../Result/Model2_STS/Simulation_STS2_X.pdf")
+ggsave("../../Result/Figures/Model2_STS/Simulation_STS2_X.pdf")
