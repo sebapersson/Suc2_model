@@ -8,7 +8,7 @@ function dydt = Model2(t, y, theta, rate_in_factor)
 %       y(3), Suc2 (the outsignal)
 %       y(4), X the cellular response to starvation 
 %   theta, paramater vector where theta(0) -- theta(10) corresponds to the
-%   rates k1, ..., k10. theta(11) corresponds to the inital glucose level.
+%   rates k1, ..., k10. 
 %   rate_in_factor, factor that decides the glucose change at time zero. It
 %   has a default value of 1/40
 % Returns:
