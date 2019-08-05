@@ -15,7 +15,7 @@ my_theme <- theme_bw() + theme(plot.title = element_text(hjust = 0.5, size = 14,
 my_min_theme <- theme_minimal() + theme(plot.title = element_text(hjust = 0.5, size = 14, face="bold"), 
                                         plot.subtitle = element_text(hjust = 0.5)) +
   theme(axis.title=element_text(size=13))
-my_classic_theme <- theme_classic() + theme(plot.title = element_text(hjust = 0.5, size = 14, face="bold"), 
+my_classic_theme <- theme_bw() + theme(plot.title = element_text(hjust = 0.5, size = 14, face="bold"), 
                                             plot.subtitle = element_text(hjust = 0.5)) +
   theme(axis.title=element_text(size=13)) + theme(panel.grid.major = element_line(size = 0.2, linetype = 'solid',
                                                                                   colour = "grey"))
@@ -65,7 +65,7 @@ plot_obs_vs_pred_STS <- function(path_to_obs_data, path_pred_data, path_save, pr
   
   # Save figures
   p1 
-  ggsave(path_save, height = 5, width = 9)
+  ggsave(path_save, height = 6, width = 9)
   
   # Print if provded as option 
   if(print_fig) print(p1)
@@ -110,7 +110,7 @@ plot_residuals_STS <- function(path_to_residuals, path_obs_data, path_save_time,
       labs(x = "Time", y = "Stand. residuals") +
       my_classic_theme
     p1 
-    ggsave(path_save_time, height = 5, width = 9)
+    ggsave(path_save_time, height = 6, width = 9)
   }else{
     p1 <- ggplot(residual_data_plot, aes(Suc2, std_res)) + 
       geom_point(size = 0.8, alpha = 0.6) + 
@@ -121,7 +121,7 @@ plot_residuals_STS <- function(path_to_residuals, path_obs_data, path_save_time,
       labs(x = "Time", y = "Stand. residuals") +
       my_classic_theme
     p1
-    ggsave(path_save_obs, height = 5, width = 9)
+    ggsave(path_save_obs, height = 6, width = 9)
   }
   
   # Print the figure if provided as an option 
@@ -162,7 +162,7 @@ plot_individual_fit <- function(path_fit_data, path_obs_data, path_save, which_c
   # Save the figure 
   path_save_fig <- str_c(path_save, as.character(which_cell), ".pdf")
   p1
-  ggsave(path_save_fig, height = 5, width = 9)
+  ggsave(path_save_fig, height = 6, width = 9)
   
   # Print the figure if provided as option 
   if(print_fig) print(p1)

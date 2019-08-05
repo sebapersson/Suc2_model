@@ -11,7 +11,7 @@ my_theme <- theme_bw() + theme(plot.title = element_text(hjust = 0.5, size = 14,
 my_min_theme <- theme_minimal() + theme(plot.title = element_text(hjust = 0.5, size = 14, face="bold"), 
                                         plot.subtitle = element_text(hjust = 0.5)) +
   theme(axis.title=element_text(size=13))
-my_classic_theme <- theme_classic() + theme(plot.title = element_text(hjust = 0.5, size = 14, face="bold"), 
+my_classic_theme <- theme_bw() + theme(plot.title = element_text(hjust = 0.5, size = 14, face="bold"), 
                                             plot.subtitle = element_text(hjust = 0.5)) +
   theme(axis.title=element_text(size=13)) + theme(panel.grid.major = element_line(size = 0.2, linetype = 'solid',
                                                                                   colour = "grey"))
@@ -114,9 +114,9 @@ plot_list <- create_vpc_plots(path_to_data, path_to_vpc_data)
 p1 <- plot_list[[1]]  
 p2 <- plot_list[[2]]  
 p3 <- plot_list[[3]]  
-ggsave("../../Result/Figures/Model1_nlme/VPC_30_70.pdf", p1, width = 12, height = 5)
-ggsave("../../Result/Figures/Model1_nlme/VPC_20_80.pdf", p2, width = 12, height = 5)
-ggsave("../../Result/Figures/Model1_nlme/VPC_05_95.pdf", p3, width = 12, height = 5)
+ggsave("../../Result/Figures/Model1_nlme/VPC_30_70.pdf", p1, width = 9, height = 6)
+ggsave("../../Result/Figures/Model1_nlme/VPC_20_80.pdf", p2, width = 9, height = 6)
+ggsave("../../Result/Figures/Model1_nlme/VPC_05_95.pdf", p3, width = 9, height = 6)
 
 # Create the vpc-plots for model 2
 path_to_data <- "../../Intermediate/Data_whole_tidy_filt.csv"
@@ -125,6 +125,6 @@ plot_list <- create_vpc_plots(path_to_data, path_to_vpc_data)
 p1 <- plot_list[[1]]  
 p2 <- plot_list[[2]]  
 p3 <- plot_list[[3]]  
-ggsave("../../Result/Figures/Model2_nlme/VPC_30_70_mod2.pdf", p1, width = 12, height = 5)
-ggsave("../../Result/Figures/Model2_nlme/VPC_20_80_mod2.pdf", p2, width = 12, height = 5)
-ggsave("../../Result/Figures/Model2_nlme/VPC_05_95_mod2.pdf", p3, width = 12, height = 5)
+ggsave("../../Result/Figures/Model2_nlme/VPC_30_70_mod2.pdf", p1, width = 9, height = 6)
+ggsave("../../Result/Figures/Model2_nlme/VPC_20_80_mod2.pdf", p2, width = 9, height = 6)
+ggsave("../../Result/Figures/Model2_nlme/VPC_05_95_mod2.pdf", p3, width = 9, height = 6)

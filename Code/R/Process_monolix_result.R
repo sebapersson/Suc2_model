@@ -16,7 +16,7 @@ my_theme <- theme_bw() + theme(plot.title = element_text(hjust = 0.5, size = 14,
 my_min_theme <- theme_minimal() + theme(plot.title = element_text(hjust = 0.5, size = 14, face="bold"), 
                                         plot.subtitle = element_text(hjust = 0.5)) +
   theme(axis.title=element_text(size=13))
-my_classic_theme <- theme_classic() + theme(plot.title = element_text(hjust = 0.5, size = 14, face="bold"), 
+my_classic_theme <- theme_bw() + theme(plot.title = element_text(hjust = 0.5, size = 14, face="bold"), 
                                             plot.subtitle = element_text(hjust = 0.5)) +
   theme(axis.title=element_text(size=13)) + theme(panel.grid.major = element_line(size = 0.2, linetype = 'solid',
                                                                                   colour = "grey"))
@@ -113,7 +113,7 @@ print_obs_vs_ipred <- function(path_to_figure, path_to_result, estimated_sigma, 
   
   # Save the figure 
   p1
-  ggsave(path_to_figure, height = 5, width = 9)
+  ggsave(path_to_figure, height = 6, width = 9)
   
   # Print the figure if the option provided by the user 
   if(print_figure) print(p1)
@@ -174,7 +174,7 @@ print_residuals <- function(path_res_time, path_res_response, path_to_result, es
       labs(x = "Time", y = "IWRES") +
       my_classic_theme
     p1
-    ggsave(path_res_time, height = 5, width = 9)
+    ggsave(path_res_time, height = 6, width = 9)
   }else{
     # Plot IWRES vs Suc2 expression 
     p2 <- ggplot(obs_vs_pred_data, aes(Suc2_, IWRES)) + 
@@ -186,7 +186,7 @@ print_residuals <- function(path_res_time, path_res_response, path_to_result, es
       labs(x = "Suc2-intensity", y = "IWRES") +
       my_classic_theme
     p2 
-    ggsave(path_res_response, height = 5, width = 9)
+    ggsave(path_res_response, height = 6, width = 9)
   }
   
   # Print if provided as an option 
@@ -244,7 +244,7 @@ check_dist_IWRES <- function(path_hist_IWRES, path_qq_IWRES, path_to_result, est
       labs(y = "", x = "IWRES") +
       my_classic_theme
     p1
-    ggsave(path_hist_IWRES, height = 5, width = 9)
+    ggsave(path_hist_IWRES, height = 6, width = 9)
   }else{
     # Create a qqplot, this is required, kind of a bug in R 
     p2 <- ggplot(obs_vs_pred_data, aes(sample = IWRES)) + 
@@ -252,7 +252,7 @@ check_dist_IWRES <- function(path_hist_IWRES, path_qq_IWRES, path_to_result, est
       geom_qq_line() + 
       my_classic_theme
     p2 
-    ggsave(path_qq_IWRES, height = 5, width = 9)
+    ggsave(path_qq_IWRES, height = 6, width = 9)
   }
   
   # Print if provided as an option 
@@ -331,12 +331,12 @@ check_dist_individual_param <- function(path_hist_ind, path_qq_ind, path_to_resu
   if(save_hist){
     p1 <- ggpubr::ggarrange(plotlist = plot_list_hist, ncol = n_col, nrow = 2)
     p1
-    ggsave(path_hist_ind, height = 5, width = 9)
+    ggsave(path_hist_ind, height = 6, width = 9)
   }else{
     # Plot the qqplots
     p2 <- ggpubr::ggarrange(plotlist = plot_list_qq, ncol = n_col, nrow = 2)
     p2 
-    ggsave(path_qq_ind, height = 5, width = 9)
+    ggsave(path_qq_ind, height = 6, width = 9)
   }
   
   return(0)
@@ -422,7 +422,7 @@ plot_individual_fit <- function(path_fig, path_to_result, which_cell, save_fig =
   # Save fig if required 
   if(save_fig){
     p1 
-    ggsave(name_fig, height = 5, width = 9)
+    ggsave(name_fig, height = 6, width = 9)
   }
   
   # If the figure should be printed
@@ -500,7 +500,7 @@ plot_heat_map_fisher <- function(path_fish_cor, path_to_result, print_figure = F
   
   # Save the figure 
   p1
-  ggsave(path_fish_cor, height = 5, width = 9)
+  ggsave(path_fish_cor, height = 6, width = 9)
   
   # If the figure should be printed
   if(print_figure) print(p1)
@@ -559,7 +559,7 @@ plot_heat_map_fisher_small <- function(path_fish_cor, path_to_result, print_figu
   
   # Save the figure 
   p1
-  ggsave(path_fish_cor, height = 5, width = 9)
+  ggsave(path_fish_cor, height = 6, width = 9)
   
   # If the figure should be printed
   if(print_figure) print(p1)
