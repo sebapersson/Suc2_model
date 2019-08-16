@@ -109,7 +109,7 @@ print_obs_vs_ipred <- function(path_to_figure, path_to_result, estimated_sigma, 
     geom_abline(aes(slope = 1, intercept = 0, color = "y = x"), size = 1.0, show.legend = F) + 
     labs(x = "Individual predictions", y = "Observed values") +
     scale_color_manual(name = "Linetype", values = cols) + 
-    my_classic_theme 
+    my_classic_theme + theme(legend.position = "none")
   
   # Save the figure 
   p1
@@ -332,11 +332,13 @@ check_dist_individual_param <- function(path_hist_ind, path_qq_ind, path_to_resu
     p1 <- ggpubr::ggarrange(plotlist = plot_list_hist, ncol = n_col, nrow = 2)
     p1
     ggsave(path_hist_ind, height = 6, width = 9)
+    return(plot_list_hist)
   }else{
     # Plot the qqplots
     p2 <- ggpubr::ggarrange(plotlist = plot_list_qq, ncol = n_col, nrow = 2)
     p2 
     ggsave(path_qq_ind, height = 6, width = 9)
+    return(plot_list_qq)
   }
   
   return(0)
@@ -483,7 +485,8 @@ plot_heat_map_fisher <- function(path_fish_cor, path_to_result, print_figure = F
                          midpoint = 0, limit = c(-1,1), space = "Lab", 
                          name="Pearson correlation") +
     theme_minimal() +
-    theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 10, hjust = 1))+
+    theme(axis.text.x = element_text(vjust = 1, size = 6, hjust = 1, angle = 90), 
+          axis.text.y = element_text(size = 6)) +
     coord_fixed() + 
     theme(
       axis.title.x = element_blank(),

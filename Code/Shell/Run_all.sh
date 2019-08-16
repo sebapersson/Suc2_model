@@ -49,7 +49,6 @@ check_if_dir_exists Data_set
 cd ../../Code/R
 echo "Creating figures of the data set"
 Rscript ./Explore_data_sets.R 2> /dev/null 
-
 # -------------------------------------------------------------------------
 # Run the monolix code 
 # -------------------------------------------------------------------------
@@ -111,10 +110,15 @@ fi
 check_if_dir_exists Result
 cp -r Model2/* Result/
 
+## Model 3
+cd ../Model3 
+check_if_dir_exists Result
+cp -r Model3/* Result/
+
 # Move back to head directory
 cd ../../..
 
-echo "Both models have been run in Monolix"
+echo "All models have been run in Monolix"
 
 # -------------------------------------------------------------------------
 # Diagnostics NLME models 
@@ -123,13 +127,16 @@ echo "Both models have been run in Monolix"
 cd Result/Figures
 check_if_dir_exists Model1_nlme
 check_if_dir_exists Model2_nlme
+check_if_dir_exists Model2_nlme_short_del
 cd ../..
 
 # Run the R-script for creating the diagnostic plots (except simulation and VPC)
-echo "Creating diagnostic plots for nlme model 1 and 2"
+echo "Creating diagnostic plots for nlme model 1, 2 and 3"
 cd Code/R
-Rscript Diagnose_nlme.R 2> /dev/null 
-echo "Done diagnostic plots for nlme model 1 and 2"
+Rscript ./Diagnose_nlme.R 2> /dev/null 
+echo "Done diagnostic plots for nlme model 1, 2 and 3"
+
+exit 0
 
 # Move back to root
 cd ../..
@@ -184,6 +191,7 @@ echo "Creating diagnosis plots for STS"
 cd Result/Figures 
 check_if_dir_exists Model1_STS
 check_if_dir_exists Model2_STS
+check_if_dir_exists Model2_short_del_STS
 
 cd ../../Code/R/
 Rscript Diagnose_STS.R 2> /dev/null
@@ -198,7 +206,7 @@ cd ../..
 cd Intermediate
 
 # Don't run if files already exist as this is expansive
-if [ ! -Simulation_model1.csv ] || [ ! -f Simulation_model2.csv ]; then
+if [ ! -Simulation_model1.csv ] || [ ! -f Simulation_model2.csv ] || [ ! -f Simulation_model2_short_del.csv ]; then
     cd ../Code/Matlab
     echo "Running simulations for nlme models"
     /usr/local/MATLAB/R2019a/bin/matlab -nodisplay -nosplash -nodesktop -r "run('Simulate_cells_nlme.m');exit;" | tail -n +11
@@ -206,7 +214,7 @@ if [ ! -Simulation_model1.csv ] || [ ! -f Simulation_model2.csv ]; then
 fi
 
 # Don't run if files already exist as this is expansive
-if [ ! -Simulation_model1_STS.csv ] || [ ! -f Simulation_model2_STS.csv ]; then
+if [ ! -Simulation_model1_STS.csv ] || [ ! -f Simulation_model2_STS.csv ] || [ ! -f Simulation_model2_short_del_STS.csv ]; then
     cd ../Code/Matlab
     echo "Running simulations for STS models"
     /usr/local/MATLAB/R2019a/bin/matlab -nodisplay -nosplash -nodesktop -r "run('Simulate_cells_STS.m');exit;" | tail -n +11
@@ -231,12 +239,12 @@ cd ../../
 # -------------------------------------------------------------------------
 cd Intermediate
 # Don't run if files already exist as this is expansive
-if [ ! -f Simulation_model2_extraplate.csv ] || [ ! -f Simulation_model2_extra_glc_1_20.csv ] || [ ! -f Simulation_model2_extra_glc_1_2.csv ]; then
+if [ ! -f Simulation_model2_extrapolate.csv ] || [ ! -f Simulation_model2_extra_glc_1_20.csv ] || [ ! -f Simulation_model2_extra_glc_1_2.csv ] || [ ! -f Simulation_model2_extra_glc_1_1.csv ]; then
     cd ../Code/Matlab
     echo "Running extrapolation for model 2"
     /usr/local/MATLAB/R2019a/bin/matlab -nodisplay -nosplash -nodesktop -r "run('Extrapolate_simulations.m');exit;" | tail -n +11
     cd ../../Intermediate
-fi 
+fi
 
 cd ..
 echo "Done with extrapolation calculations for model 2"
@@ -250,7 +258,7 @@ check_if_dir_exists Model2_extrapolated
 cd ../../Code/R
 
 echo "Plotting the extrapolations"
-Rscript Plot_extrapolations.R 2> /dev/null
+Rscript Plot_extrapolation.R  2> /dev/null
 echo "Done plotting the extrapolations"
 
 cd ../../

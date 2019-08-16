@@ -139,3 +139,16 @@ plot_list[[3]] + labs(y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"))
 ggsave("../../Result/Figures/Model2_extrapolated/Simulation_nlme2_Suc2_1_2.pdf", height = 6, width = 9)
 plot_list[[4]]
 ggsave("../../Result/Figures/Model2_extrapolated/Simulation_nlme2_X_1_2.pdf", height = 6, width = 9)
+
+# Model2 rate in 1 -> 1
+state_names <- c("Glc", "Mig1", "Suc2", "X", "t", "Cell")
+path_to_data <- "../../Intermediate/Simulation_model2_extra_glc_1_1.csv"
+plot_list <- plot_simulated_extrapolation_data(path_to_data, state_names)
+plot_list[[1]]
+ggsave("../../Result/Figures/Model2_extrapolated/Simulation_nlme2_Glc_1_1.pdf", height = 6, width = 9)
+plot_list[[2]] + labs(title = "SNF1 pathway vs time", y = "SNF1 pathway")
+ggsave("../../Result/Figures/Model2_extrapolated/Simulation_nlme2_SNF1_1_1.pdf", height = 6, width = 9)
+plot_list[[3]] + labs(y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"))
+ggsave("../../Result/Figures/Model2_extrapolated/Simulation_nlme2_Suc2_1_1.pdf", height = 6, width = 9)
+plot_list[[4]]
+ggsave("../../Result/Figures/Model2_extrapolated/Simulation_nlme2_X_1_1.pdf", height = 6, width = 9)

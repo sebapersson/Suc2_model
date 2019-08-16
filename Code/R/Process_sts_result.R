@@ -222,10 +222,12 @@ check_dist_ind_param_STS <- function(path_param, name_param, n_parameters, path_
     p1 <- ggpubr::ggarrange(plotlist = plot_list_hist, nrow = 2, ncol = 6)
     p1
     ggsave(path_save_hist, height = 5, width = 12)
+    return(plot_list_hist)
   }else{
     p1 <- ggpubr::ggarrange(plotlist = plot_list_qq, nrow = 2, ncol = 6)
     p1
     ggsave(path_save_qq, height = 5, width = 12)
+    return(plot_list_qq)
   }
   return(0)
 }

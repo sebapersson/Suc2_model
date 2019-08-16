@@ -136,7 +136,7 @@ ggsave("../../Result/Figures/Model1_nlme/Simulation_nlme1_SNF1.pdf", height = 6,
 plot_list[[3]] + labs(y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"))
 ggsave("../../Result/Figures/Model1_nlme/Simulation_nlme1_Suc2.pdf", height = 6, width = 9)
 plot_list[[4]]
-ggsave("../../Result/Figures/Model1_nlme/Simulation_nlme1_X.pdf")
+ggsave("../../Result/Figures/Model1_nlme/Simulation_nlme1_X.pdf", height = 6, width = 9)
 
 # Model2 nlme
 state_names <- c("Glc", "Mig1", "Suc2", "X", "t", "Cell")
@@ -152,6 +152,19 @@ ggsave("../../Result/Figures/Model2_nlme/Simulation_nlme2_Suc2.pdf", height = 6,
 plot_list[[4]]
 ggsave("../../Result/Figures/Model2_nlme/Simulation_nlme2_X.pdf", height = 6, width = 9)
 
+# Model2 nlme short delay 
+state_names <- c("Glc", "Mig1", "Suc2", "X", "t", "Cell")
+path_to_data <- "../../Intermediate/Simulation_model2_short_del.csv"
+path_raw_data <- "../../Intermediate/Data_whole_tidy_filt.csv"
+plot_list <- plot_simulated_data(path_to_data, path_raw_data, state_names)
+plot_list[[1]]
+ggsave("../../Result/Figures/Model2_nlme_short_del/Simulation_nlme2_Glc.pdf", height = 6, width = 9)
+plot_list[[2]] + labs(title = "SNF1 pathway vs time", y = "SNF1 pathway")
+ggsave("../../Result/Figures/Model2_nlme_short_del/Simulation_nlme2_SNF1.pdf", height = 6, width = 9)
+plot_list[[3]] + labs(y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"))
+ggsave("../../Result/Figures/Model2_nlme_short_del/Simulation_nlme2_Suc2.pdf", height = 6, width = 9)
+plot_list[[4]]
+ggsave("../../Result/Figures/Model2_nlme_short_del/Simulation_nlme2_X.pdf", height = 6, width = 9)
 
 # Model1 STS 
 state_names <- c("Glc", "Mig1", "Suc2", "X", "t", "Cell")
@@ -180,3 +193,42 @@ plot_list[[3]] + labs(y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"))
 ggsave("../../Result/Figures/Model2_STS/Simulation_STS2_Suc2.pdf", height = 6, width = 9)
 plot_list[[4]]
 ggsave("../../Result/Figures/Model2_STS/Simulation_STS2_X.pdf", height = 6, width = 9)
+
+# Model2 STS short delay 
+state_names <- c("Glc", "Mig1", "Suc2", "X", "t", "Cell")
+path_to_data <- "../../Intermediate/Simulation_model2_short_del_STS.csv"
+path_raw_data <- "../../Intermediate/Data_whole_tidy_filt.csv"
+plot_list <- plot_simulated_data(path_to_data, path_raw_data, state_names)
+plot_list[[1]]
+plot_list[[2]] + labs(title = "SNF1 pathway vs time", y = "SNF1 pathway")
+plot_list[[3]] + labs(y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"))
+plot_list[[4]]
+
+# Model1 STS different covariance matrix, the one from NLME 
+state_names <- c("Glc", "Mig1", "Suc2", "X", "t", "Cell")
+path_to_data <- "../../Intermediate/Simulation_model1_alt_cov_STS.csv"
+path_raw_data <- "../../Intermediate/Data_whole_tidy_filt.csv"
+plot_list <- plot_simulated_data(path_to_data, path_raw_data, state_names)
+plot_list[[1]]
+ggsave("../../Result/Figures/Model1_STS/Simulation_STS1_Glc_diff_cov.pdf", height = 6, width = 9)
+plot_list[[2]] + labs(title = "SNF1 pathway vs time", y = "SNF1 pathway", height = 6, width = 9)
+ggsave("../../Result/Figures/Model1_STS/Simulation_STS1_SNF1_diff_cov.pdf")
+plot_list[[3]] + labs(y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"))
+ggsave("../../Result/Figures/Model1_STS/Simulation_STS1_Suc2_diff_cov.pdf", height = 6, width = 9)
+plot_list[[4]]
+ggsave("../../Result/Figures/Model1_STS/Simulation_STS1_X_diff_cov.pdf", height = 6, width = 9)
+
+# Model2 STS different covariance matrix 
+state_names <- c("Glc", "Mig1", "Suc2", "X", "t", "Cell")
+path_to_data <- "../../Intermediate/Simulation_model2_alt_cov_STS.csv"
+path_raw_data <- "../../Intermediate/Data_whole_tidy_filt.csv"
+plot_list <- plot_simulated_data(path_to_data, path_raw_data, state_names)
+plot_list[[1]]
+ggsave("../../Result/Figures/Model2_STS/Simulation_STS2_Glc_diff_cov.pdf", height = 6, width = 9)
+plot_list[[2]] + labs(title = "SNF1 pathway vs time", y = "SNF1 pathway", height = 6, width = 9)
+ggsave("../../Result/Figures/Model2_STS/Simulation_STS2_SNF1_diff_cov.pdf")
+plot_list[[3]] + labs(y = TeX("Suc2 intensity \\[A.U.$\\times 10^{-2}$\\]"))
+ggsave("../../Result/Figures/Model2_STS/Simulation_STS2_Suc2_diff_cov.pdf", height = 6, width = 9)
+plot_list[[4]]
+ggsave("../../Result/Figures/Model2_STS/Simulation_STS2_X_diff_cov.pdf", height = 6, width = 9)
+  

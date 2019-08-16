@@ -85,3 +85,8 @@ path_pop_param = "../Monolix/Model2/Result/populationParameters.txt"
 path_save = "../../Intermediate/Cov_mat_model2_nlme.csv"
 create_cor_mat(path_pop_param, path_save)
 
+# For model2 with shorter delay 
+path_pop_param = "../Monolix/Model2_test/Result/populationParameters.txt"
+path_save = "../../Intermediate/Cov_mat_model2_short_del_nlme.csv"
+create_cor_mat(path_pop_param, path_save)
+

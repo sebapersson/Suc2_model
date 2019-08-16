@@ -1,10 +1,10 @@
 function simulated_result = calc_VC_quantiles(cov_mat, ode_fun, ...
-    times_simulate, fixed_effects, suc20, glc0, sigma_val, n_individuals)
+					      times_simulate, fixed_effects, suc20, glc0, sigma_val, n_individuals, n_rates)
 % Function that will calculate the median, 0.05, 0.2, 0.3, 0.7, 0.8
 % and 0.95 quantile for a model using a covariance matrix for 
 % drawing the random effects. Note that this function isn't general, it is
-% written to work with 12 parameters models such as model 1 and model 2
-% where the last drawn effect is the glucse value. 
+% written to work with models such as model 1 and model 2
+% where the last drawn effect is the glucose value. 
 % Args:
 %   cov_mat, the by monolix estimated covariance matrix 
 %   ode_fun, the ode_function corresponding to the model
@@ -14,13 +14,15 @@ function simulated_result = calc_VC_quantiles(cov_mat, ode_fun, ...
 %   glc0, the estimated inital glucse value
 %   sigma_val, the estimated noise for the model 
 %   n_individuals, number of cells in the data set 
+%   n_rates, the number of rate constants in the model 
 % Returns:
 %   simulated_result, a matrix where the first column is the time indices,
 %   the following columns are the 0.05, 0.2, 0.3, 0.7, 0.8, 0.95 quantiles
 %   and the last column is an index corresponding to the run. 
 
+
 % The mean vector for drawing the random effects
-mean_vec = zeros(1, 12);
+mean_vec = zeros(1, n_rates + 2);
 
 % Get time values
 time_stamps1 = (0:5:480) / 480;
@@ -43,7 +45,7 @@ for k = 1:1:times_simulate
     % Draw the random effects 
     random_effects = mvnrnd(mean_vec, cov_mat, n_individuals)';
     % Fix the parameter values
-    param_values = ones(10, n_individuals);
+    param_values = ones(n_rates, n_individuals);
     suc2_init_val = ones(1, n_individuals);
     glc_init_val = ones(1, n_individuals);
     for i = 1:1:n_individuals
