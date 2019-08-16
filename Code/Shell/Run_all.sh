@@ -96,7 +96,7 @@ if [ ! -f "Model2/populationParameters.txt" ]; then
     echo "k6 = 80.6"
     echo "k7 = 4.9"
     echo "k8 = 8.8"
-    echo "k9 = 1.8"
+    echo "k9 = 10.8"
     echo "k10 = 4"
     echo "Suc20 = 4.1"
     echo "Glc0 = 10.3"
@@ -110,10 +110,32 @@ fi
 check_if_dir_exists Result
 cp -r Model2/* Result/
 
-## Model 3
-cd ../Model3 
+## Model 2 short delay 
+cd ../Model2_test
+# If the Monolix code hasn't been run prompt the user to run it.
+if [ ! -f "Model2_short_del/populationParameters.txt" ]; then
+    echo "Model 2 short delay hasn't been run in monolix"
+    echo "Run Model2_short_del.mlxtran file in monolix 2019R1"
+    echo "The following initial values should be used:"
+    echo "k1 = 100"
+    echo "k2 = 13.1"
+    echo "k3 = 61.9"
+    echo "k4 = 364.9"
+    echo "k5 = 14.5"
+    echo "k6 = 33.7"
+    echo "k7 = 1.8"
+    echo "k8 = 5.1"
+    echo "k9 = 1.7"
+    echo "k10 = 1.2"
+    echo "Suc20 = 4.0"
+    echo "Glc0 = 7.9"
+    echo "Number of iterations for SAEM should be 1000"
+    echo "and all parameters except k1, k10 and Suc20 should"
+    echo "be included in the correlation model"
+    exit 1
+fi
 check_if_dir_exists Result
-cp -r Model3/* Result/
+cp -r Model2_short_del/* Result/
 
 # Move back to head directory
 cd ../../..
