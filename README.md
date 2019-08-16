@@ -2,7 +2,7 @@
 
 This repository contains the code for a project that was done at [Cvijovic Lab](http://www.cvijoviclab.org/) as a part of the course Individual project in mathematics and mathematical statistics (MVE405) at Chalmers University of Technology. The aim of the project was to model recently collected single cell SUC2 expression time series data from *Saccharomyces cerevisiae*, see Figure 1 for the data set. 
 
-To fully replicate the produced result in this project the requirements in the **Requirements for replication of result** section below should be fulfilled. Given this all the tables and figures in the Results-directory can be re-created by running Run_all.sh script in the Code/Shell-directory.
+To fully replicate the produced result in this project the requirements in the **Requirements for replication of result** section below should be fulfilled. Given this all the tables and figures in the Results-directory can be re-created by running Run_all.sh script in the Code/Shell-directory. When running the Run_all.sh it should be noted that the pathway to Matlab might need to be changed, as the script currently uses absolute path to the Matlab executable. 
 
 ## Brief summary of the project 
 
