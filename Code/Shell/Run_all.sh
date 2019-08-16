@@ -110,10 +110,11 @@ fi
 check_if_dir_exists Result
 cp -r Model2/* Result/
 
+pwd
 ## Model 2 short delay 
 cd ../Model2_test
 # If the Monolix code hasn't been run prompt the user to run it.
-if [ ! -f "Model2_short_del/populationParameters.txt" ]; then
+if [ ! -f "Mod2_short_del/populationParameters.txt" ]; then
     echo "Model 2 short delay hasn't been run in monolix"
     echo "Run Model2_short_del.mlxtran file in monolix 2019R1"
     echo "The following initial values should be used:"
@@ -135,7 +136,7 @@ if [ ! -f "Model2_short_del/populationParameters.txt" ]; then
     exit 1
 fi
 check_if_dir_exists Result
-cp -r Model2_short_del/* Result/
+cp -r Mod2_short_del/* Result/
 
 # Move back to head directory
 cd ../../..
@@ -153,12 +154,10 @@ check_if_dir_exists Model2_nlme_short_del
 cd ../..
 
 # Run the R-script for creating the diagnostic plots (except simulation and VPC)
-echo "Creating diagnostic plots for nlme model 1, 2 and 3"
+echo "Creating diagnostic plots for nlme model 1 and 2"
 cd Code/R
 Rscript ./Diagnose_nlme.R 2> /dev/null 
-echo "Done diagnostic plots for nlme model 1, 2 and 3"
-
-exit 0
+echo "Done diagnostic plots for nlme model 1 and 2"
 
 # Move back to root
 cd ../..
