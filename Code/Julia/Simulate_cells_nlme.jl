@@ -237,7 +237,76 @@ function model2_short_del_nlme()
 end
 
 
+function model1_sts()
+    # Reading the covariance matrix and fixed effects, last row mean vector
+    parameter_data = CSV.read("../../Result/Files/STS_model1_cov_mean.csv")
+    cov_mat = convert(Matrix, parameter_data[1:end-1, :])
+    fixed_effects = exp.(convert(Vector, parameter_data[end, :]))
+
+    # Generate the inital values
+    n_cells_simulate = 50000
+    n_rates = 10; n_init_val = 4
+    init_one_list = (2); init_rand = ((1, 12), (3, 11))
+    param_val, init_val = generate_parameters(n_cells_simulate, n_rates,
+      n_init_val, fixed_effects, init_one_list, init_rand, cov_mat)
+    param_val = [param_val; init_val[1, :]']
+
+    # Provide the time-span for interpolation
+    time_span_inter = range(0, 1, length = 200)
+
+    n_data_points_per_cell = length(time_span_inter)
+    n_states = 4
+    time_span_solve = (0.0, 1.0)
+    simulated_result = simulate_cells(n_cells_simulate, n_states, time_span_inter,
+      time_span_solve, param_val, init_val, model1)
+
+    # Write result to file
+    simulated_result_table = convert(DataFrame, simulated_result)
+    col_names = ["time", "index", "Glc", "SNF1", "SUC2", "X"]
+    names!(simulated_result_table, Symbol.(col_names))
+    CSV.write("../../Intermediate/Simulated_model1_STS_julia.csv",
+      simulated_result_table)
+
+    return 0
+end
+
+
+function model2_sts()
+    # Reading the covariance matrix and fixed effects, last row mean vector
+    parameter_data = CSV.read("../../Result/Files/STS_model2_cov_mean.csv")
+    cov_mat = convert(Matrix, parameter_data[1:end-1, :])
+    fixed_effects = exp.(convert(Vector, parameter_data[end, :]))
+
+    # Generate the inital values
+    n_cells_simulate = 50000
+    n_rates = 10; n_init_val = 4
+    init_one_list = (2); init_rand = ((1, 12), (3, 11))
+    param_val, init_val = generate_parameters(n_cells_simulate, n_rates,
+      n_init_val, fixed_effects, init_one_list, init_rand, cov_mat)
+
+    # Provide the time-span for interpolation
+    time_span_inter = range(0, 1, length = 200)
+
+    n_data_points_per_cell = length(time_span_inter)
+    n_states = 4
+    time_span_solve = (0.0, 1.0)
+    simulated_result = simulate_cells(n_cells_simulate, n_states, time_span_inter,
+      time_span_solve, param_val, init_val, model2)
+
+    # Write result to file
+    simulated_result_table = convert(DataFrame, simulated_result)
+    col_names = ["time", "index", "Glc", "SNF1", "SUC2", "X"]
+    names!(simulated_result_table, Symbol.(col_names))
+    CSV.write("../../Intermediate/Simulated_model2_STS_julia.csv",
+      simulated_result_table)
+
+    return 0
+end
+
+
 # Running the code
 model1_nlme()
 model2_nlme()
 model2_short_del_nlme()
+model1_sts()
+model2_sts()
